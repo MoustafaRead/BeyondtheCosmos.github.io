@@ -1,0 +1,213 @@
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="icon" href="../assets/icon.png">
+    <title>Beyond The Cosmos</title>
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <audio id="background-sound" loop>
+        <source src="../assets/space-ambience.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    <audio id="hoverSound" src="../assets/hover.mp3" type="audio/mpeg"></audio>
+    <audio id="clickSound" src="../assets/click.mp3" type="audio/mpeg"></audio>
+    <audio id="typingSound" src="../assets/morse.mp3" type="audio/mpeg"></audio>
+    <audio id="sliderSound" src="../assets/slider.mp3" type="audio/mpeg"></audio>
+    <audio id="radioSound" src="../assets/radio.mp3" type="audio/mpeg"></audio>
+    <script src="https://unpkg.com/typeit@8.7.1/dist/index.umd.js"></script>
+    <script>
+        // import {typeWriter, delay} from './main.js';
+        function closeOverlay() {
+            document.getElementById('overlay').style.display = 'none';
+            document.getElementById('confirm').style.display = 'none';
+            document.getElementById('modal').style.display = 'none';
+        }
+        function updateValue(val) {
+            document.getElementById('sliderValue').textContent = val;
+            sliderSound.currentTime = 0;
+            sliderSound.play();
+        }
+        function refreshPage() {
+            location.reload();
+        }
+    </script>
+    <link rel="stylesheet" href="styles.css">
+</head> 
+<body>
+    <div class="overlay" id="overlay">
+        <div class="modal" id="modal">
+            <h1 class="modal-title">Welcome to NASA Headquarters, Operator!</h1>
+            <p class="modal-text">As our newest member, you are now part of a prestigious team dedicated to exploring the mysteries of the universe. Your first assignment involves assisting Diguzma not salamanca, our astronaut, in his mission to analyze five unexplored planets. Your contributions will be crucial in advancing our understanding of space. We are confident in your abilities and look forward to your valuable insights. Prepare for an exciting and impactful journey. Together, we will continue to push the boundaries of discovery.<br><br><br><br><em>~ Better call NASA</em></p>
+            <div class="modal-button-container">
+                <button class="modal-button" id="next" onclick="closeOverlay()">Awesome!</button>
+            </div>
+        </div>
+        <div class="confirmReturn" id="confirm" style="display: none;">
+            <h1>Are you sure you want to return early?</h1>
+            <p style="font-size: 30px; text-align: center;">This will end the game early and the current chosen planets will be submitted</p>
+            <div class="confirm-button-container">
+                <button class="confirm-button" id="confirm-no" onclick="closeOverlay()">No</button>
+                <button class="confirm-button" id="confirm-yes" >Yes</button>
+            </div>
+        </div>
+        <div class="victory" id="victory">
+                <h1 class="victory-title"><span id="victory-state"></span>!</h1>
+                <p class="victory-text" style="margin: 10px 0px;">
+                    You got <span id="score">0</span>/5 planets correct!
+                </p>
+                <p id="victory-stat">
+                <div class="victory-button-container">
+                    <button class="victory-button" id="next" onclick="refreshPage()">Awesome!</button>
+                </div>
+        </div>
+    </div>
+    <div class ="main">
+        <div class="main-left">
+            <div class="planets">
+                <form class="planet-container">
+                    <div class="planet-input">
+                        <!-- class: styling
+                        id: label linking
+                        value: code value
+                        name: input linking together -->
+                        <label for="planet1">Planet 1</label>
+                        <input name="PInput" type="radio" class="planet" id="Planet1" checked>
+                    </div> 
+                    <div class="planet-input">
+                        <label for="planet2">Planet 2</label>
+                        <input name = "PInput" type="radio" class="planet" id="Planet2">
+                    </div> 
+                    <div class="planet-input">
+                        <label for="planet3">Planet 3</label>
+                        <input name = "PInput" type="radio" class="planet" id="Planet3">
+                    </div> 
+                    <div class="planet-input">
+                        <label for="planet4">Planet 4</label>
+                        <input name = "PInput" type="radio" class="planet" id="Planet4">
+                    </div> 
+                    <div class="planet-input">
+                        <label for="planet5">Planet 5</label>
+                        <input name = "PInput" type="radio" class="planet" id="Planet5">
+                    </div> 
+                </form>
+            </div>
+            <div class="mainScreen" id="mainS">
+                <div class="Logs"></div>
+                <div id="dialogue">
+                    <div class="astronautMain">
+                        <button id="log">
+                            LOG
+                        </button>
+                        <div id="ASTROtext">
+                            
+                        </div>
+                        <img id="ASTROpic" src="../assets/ASTRO.png">
+                    </div>
+                    <div class="operatorMain">
+                        <img id="OPpic" src="../assets/OP.png">
+                        <div id="OPtext">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="bottomScreen" >
+                <div class="testing">
+                    <div id="test1"> 
+                        <label for="slider">Wavelength: <span id="sliderValue">10</span></label>
+                        <input type="range" id="slider" min="5" max="20" value="10" step="5" oninput="updateValue(this.value)">
+                        <div class="test-buttons">
+                            <button id="submit-button" class="test-button">Submit</button>
+                            <button id="back-button1" class="test-button">Back</button>
+                        </div>
+                    </div>
+                    <div id="test2">
+                        <div class="probe-buttons">
+                            <button id="probe-button1" name="Standard">Send Standard Probe</button>
+                            <button id="probe-button2" name="High">Send High Probe</button>
+                            <button id="probe-button3" name="Deep">Send Deep Probe</button>
+                        </div>
+                        <div class="test-buttons">
+                            
+                            <button id="back-button2" class="test-button">Back</button>
+                        </div>
+                    </div>
+                    <div id="test3">
+                        <div class="radar-buttons">
+                            <button id="radar-button1" name="low">Use Low Frequency Radar</button>
+                            <button id="radar-button2" name="high">Use High Frequency Radar</button>
+                        </div>
+                        <div class="test-buttons">
+                            <button id="back-button3" class="test-button">Back</button>
+                        </div>
+                    </div>
+                    <div id="test4">
+                        <div class="scan-buttons">
+                            <button id="scan-button1" value="1">Perform 1-hour Scan</button>
+                            <button id="scan-button2" value="3">Perform 3-hour Scan</button>
+                            <button id="scan-button3" value="6">Perform 6-hour Scan</button>
+                        </div>
+                        <div class="test-buttons">
+                            <button id="back-button4" class="test-button">Back</button>
+                        </div>
+    
+                    </div>
+                </div>
+                <div class="responses-container">
+                    <button class="response">Atmospheric Composition Analysis</button>
+                    <button class="response">Surface Temperature Mesurment</button>
+                    <button class="response">Geological Survey</button>
+                    <button class="response">Transit Analysis</button>
+                </div>
+            </div>
+        </div>
+        <div class="main-right">
+            <div class="sideBar">
+                <div class="topBar">
+                    <p id="days">Days left: 10</p>
+                    <p id="days">Energy: 100%</p>
+                </div>
+                <div class="inventory" id="inventory"> <h1>Inventory</h1>
+                    <div class="probes">
+                        <h4 style="margin: 7px;">Standard Probe: x<span id="sProbeCount"></span></h4>
+                        <h4 style="margin: 7px;">High Probe: x<span id="hProbeCount"></span></h4>
+                        <h4 style="margin: 7px;">Deep Probe: x<span id="dProbeCount"></span></h4> 
+                        <hr>
+                        <h4 style="margin: 7px;">Low-Frequency Radar: x<span id="lowRadar"></span></h4>
+                        <h4 style="margin: 7px;">High-Frequency Radar: x<span id="highRadar"></span></h4> 
+                        <hr>
+                        <h4 style="margin: 7px;">1-hour Scans: x<span id="1hr"></span></h4>
+                        <h4 style="margin: 7px;">3-hour Scans: x<span id="3hr"></span></h4> 
+                        <h4 style="margin: 7px;">6-hour Scans: x<span id="6hr"></span></h4> 
+                    </div>
+                </div>
+                <div class="planetSubmit" id="planetSubmit">Submit the planet names:
+                    <div class="Planet Planet1">Planet1:
+                        <select name="planets1" id="planets1"></select>                             
+                    </div>
+                    <div class="Planet Planet2">Planet2:
+                        <select name="planets2" id="planets2"></select>                       
+                    </div>
+                    <div class="Planet Planet3">Planet3:
+                        <select name="planets3" id="planets3"></select>                             
+                    </div>
+                    <div class="Planet Planet4">Planet4:
+                        <select name="planets4" id="planets4"></select>                             
+                    </div>
+                    <div class="Planet Planet5">Planet5:
+                        <select name="planets5" id="planets5"></select>                             
+                    </div>
+                </div>
+                <div class="grid-container">
+                    <button class="grid-item" id="log-button">View Logs</button>
+                    <button class="grid-item" id="submit-menu">Submit Menu</button>
+                    <button class="grid-item" id="radio-button">Space FM</button>
+                    <button class="grid-item" id="return-button">Return Early</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../main.js" type="module"></script>
+    <script src="../script.js" type="module"></script> 
+    <script src="../script.js" type="module"></script> 
+</body>

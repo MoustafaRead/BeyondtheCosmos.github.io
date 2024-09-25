@@ -1,0 +1,598 @@
+:root{
+    --main-color: #00ff37c4;
+    --main-color-opaque: #00ff37;
+    --main-color-dim: rgba(0, 255, 55, 0.452);
+    --main-bg-color: rgb(14, 14, 14);
+    --button-hover: rgba(0, 255, 55, 0.212);
+}
+hr{
+
+    border: 1px solid var(--main-color);
+    opacity: 0.1;
+    width: 90%;
+}
+body{
+    font-family: VT323, monospace;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background-color: var(--main-bg-color);
+    color: var(--main-color);
+} 
+button{
+    font-family: VT323, monospace;
+    border: 2px solid var(--main-color);
+    color: var(--main-color);
+    background-color: var(--main-bg-color);
+    cursor: pointer;
+}
+button:hover{
+    background-color: var(--button-hover);
+}
+
+.main{
+    display: flex;
+    height: 100vh;
+}
+.main-left{
+    width: 75%;
+    display: flex;
+    flex-direction: column;
+    border: 5px solid var(--main-color);
+    margin: 10px;
+    margin-right: 0;
+}
+.main-right{
+    width: 25%;
+    display: flex;
+    flex-direction: column;
+    border: 5px solid var(--main-color);
+    margin: 10px;
+    padding: 10px;
+}
+#days{
+    font-size: 30px;
+    text-align: center;
+    padding: 10px;
+    border: 3px solid var(--main-color);
+    margin: 10px;
+}
+.sideBar{
+    font-size: 20px;
+    display: flex;
+    flex-direction: column;
+    width: 100%; /* Take 20% of the width */
+    height: 100vh;
+}
+.topBar{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 10px 0px;
+    border-bottom: 3px solid var(--main-color);
+    padding-top: 0px;
+}
+.planetSubmit{
+    padding: 30px 20px;
+    display: none;
+    flex-direction: column;
+    height: 100%;
+    text-align: center;
+    justify-content: space-between;
+    font-size: 30px;
+    margin-bottom: 30px;
+}
+.open.planetSubmit{
+    display: flex; 
+}
+.grid-container {
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 10px;
+    width: 100%; /* Ensure it takes 100% of the remaining width */
+    margin-top: auto;
+}
+.grid-item {
+    padding: 20px;
+    text-align: center;
+    background-color: #ffffff00;
+    border: 5px solid var(--main-color);
+    color: var(--main-color);
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.bottomLeft{
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+.responses-container {
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 10px;
+    width: auto; /* Ensure it takes 100% of the remaining width */
+    margin: 10px;
+    padding-top: 15px;
+    margin-top: auto;
+
+}
+.response{
+    padding: 15px;
+    text-align: center;
+    background-color: var(--main-bg-color);
+    border: 5px solid rgba(0, 255, 55, 0);
+    color: var(--main-color);
+    font-size: 30px;
+    cursor: pointer; 
+}
+
+.planet-container{
+    border-bottom: 4px solid var(--main-color);
+    margin-bottom: 10px;
+    padding: 10px;
+    display: flex;
+    gap: 20px;  
+}
+.planet-container [type="radio"] {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+input[type="radio"] {
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--main-color);
+    border-radius: 50%;
+    position: relative;
+}
+input[type="radio"]:checked::before {
+    content: '';
+    width: 12px;
+    height: 12px;
+    background-color: var(--main-color);
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.Logs{
+    display: none;
+    padding: 50px 0px;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    overflow: scroll;
+    overflow-x: hidden;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0, 255, 55, 0.623) transparent; /* Color of the scrollbar thumb and track */
+}
+
+.Logs::-webkit-scrollbar { 
+    width: 15px; 
+}
+
+.Logs::-webkit-scrollbar-thumb {
+    background-color: var(--main-color); 
+}
+
+
+
+.planet-input{
+    font-size: 30px;
+    flex: 1; 
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.mainScreen{
+    color: var(--main-color-dim);
+    width: 100%;
+    display: flex;
+    height: 100%;
+    font-size: 30px;
+    overflow: hidden;
+} 
+#dialogue{
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    margin-top: auto;
+    gap: 80px;
+    padding: 40px 25px;
+}
+#log{ 
+    padding: 9px 15px; 
+    gap: 1px;
+    text-align: center;
+    background-color: #ffffff00;
+    border: 2px solid var(--main-color-dim);
+    color: var(--main-color);
+    font-size: 30px;
+    cursor: pointer;
+}
+#log:hover{
+    background-color: var(--button-hover);
+}
+
+.astronautMain{
+    width: 100%;
+    display: flex;
+    flex-direction:row;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 15px;
+    text-align: right;
+} 
+#ASTROtext{
+    max-width: 60%;
+}
+
+#ASTROpic{
+    border: 3px solid var(--main-color-dim);
+    border-radius: 50%;
+    height: 60px;
+    width: 60px;
+}
+.operatorMain{
+    width: 100%;
+    display: flex;
+    flex-direction:row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+}
+.operatorMain{
+    justify-self: flex-end;
+}
+#OPpic{ 
+    border: 3px solid var(--main-color-dim);
+    border-radius: 50%;
+    height: 60px;
+    width: 60px;
+}
+.open #dialogue{
+    display: none;
+}
+.open .Logs{
+    display: flex;
+}
+.clicked-log {
+    background-color:var(--main-color-opaque);
+    color: var(--main-bg-color);
+}
+.clicked-log:hover {
+    background-color: rgba(0, 255, 55, 0.637);
+}
+
+.overlay{
+    display: flex;
+    z-index: 1; 
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    align-items: center;
+    justify-content: center;
+}
+.modal{
+    width: 750px;
+    height: 650px;
+    border: 3px solid var(--main-color);
+    background-color: var(--main-bg-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+    padding: 20px 20px;
+}
+.modal-title{
+    font-size: 45px;
+}
+.modal-text{
+    text-align: center;
+    color: var(--main-color-dim);
+    font-size: 30px;
+    text-align: center;    
+}
+.modal-button{
+    font-size: 30px;
+    width: 100%;
+    height: 50px;
+    border: 2px solid var(--main-color);
+    color: var(--main-color);
+    background-color: var(--main-bg-color);
+    cursor: pointer;
+    margin-top: auto;
+}
+.modal-button-container{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    width: 100%;
+    margin-top: auto;
+}
+
+input[type="range"] {
+    -webkit-appearance: none; /* Remove default styling */
+    appearance: none;
+    width: 50%;
+    height: 5px;
+    background: var(--main-color-dim); /* Green line */
+    outline: none;
+    margin: 20px 0;
+}
+
+
+/* *************************************************************** */
+
+/* Custom slider thumb (the draggable part) */
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none; /* Remove default thumb */
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    background: #32cd32; /* Green ball */
+    border-radius: 0%; /* Make it round */
+    cursor: pointer;
+}
+
+input[type="range"]::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    background: var(--main-color); /* Green ball */
+    border-radius: 0%; /* Make it round */
+    cursor: pointer;
+}
+
+/* For non-webkit browsers (Firefox, etc.) */
+input[type="range"]::-ms-thumb {
+    width: 20px;
+    height: 20px;
+    background: #32cd32; /* Green ball */
+    border-radius: 50%; /* Make it round */
+    cursor: pointer;
+}
+/* *************************************************************** */
+
+.bottomScreen{
+    display: flex;
+    flex-direction: column;
+    height: 30%;
+    border-top: 3px solid var(--main-color);
+    justify-content: center;
+}
+
+#test1{
+    display: none;
+    font-size: 30px;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-evenly;
+    gap: 40px
+}
+
+.test-buttons{
+    display: flex;
+    flex-direction: column;
+    
+    font-size: 40px;
+    justify-content: space-between;
+    width: 20%;
+
+}
+.test-button{
+    font-size: 30px;
+    width: 80%;
+}
+
+/* *************************************************************** */
+/* For WebKit browsers (Chrome, Safari) */
+select {
+    font-family: VT323, monospace;
+    font-size: 20px;
+    text-align: center;
+    background-color: var(--main-bg-color); /* Background color of the dropdown */
+    color: var(--main-color); /* Text color for contrast */
+    padding: 5px;
+    border: 1px solid var(--main-color);
+    border-radius: 0px;
+    cursor: pointer;
+    -webkit-appearance: none; /* Removes default WebKit styling */
+    -moz-appearance: none; /* Firefox support */
+    appearance: none; /* Modern browsers */
+}
+
+/* Styling the dropdown arrow */
+select::-ms-expand {
+    display: none; /* For Internet Explorer */
+}
+
+/* Additional optional styling for hover and focus states */
+select:hover {
+    background-color: var(--button-hover); /* Slightly lighter green on hover */
+}
+
+select:focus {
+    outline: none; /* Add green glow on focus */
+}
+
+
+
+/* Option-specific styling inside the dropdown */
+select option {
+    background-color: var(--main-bg-color); /* White background for options */
+    color: var(--main-color); /* Black text color */
+    padding: 5px; /* Padding for options */
+    border-radius: 0%;
+}
+select option:hover {
+    background-color: transparent; /* No hover effect */
+    color: inherit; /* Keep the same text color */
+}
+/* Change color for selected option */
+select option:checked {
+    background-color: #32CD32; /* Light green for selected option */
+    color: rgb(0, 0, 0); /* White text for contrast */
+}
+/* *************************************************************** */
+
+
+.grid-item.clicked-submit-menu {
+    background-color:var(--main-color-opaque);
+    color: var(--main-bg-color);
+} 
+.grid-item.clicked-submit-menu:hover {
+    background-color: rgba(0, 255, 55, 0.637);
+}
+/* *************************************************************** */
+.victory{
+    width: 750px;
+    height: 650px;
+    border: 3px solid var(--main-color);
+    background-color: var(--main-bg-color);
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+    padding: 20px 20px;
+}
+.victory-title{
+    font-size: 70px;
+}
+.victory-text{
+    font-size: 40px;
+    text-align: center;
+    color: var(--main-color-dim)
+}
+.victory-button{
+    font-size: 30px;
+    width: 100%;
+    height: 50px;
+    border: 2px solid var(--main-color);
+    color: var(--main-color);
+    background-color: var(--main-bg-color);
+    cursor: pointer;
+    margin-top: auto;
+}
+#victory-stat{
+    font-size: 40px;
+    text-align: center;
+}
+.victory-button-container{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    width: 100%;
+    margin-top: auto;
+}
+.open.victory{
+    display: flex; 
+}
+/* *************************************************************** */
+.confirmReturn{
+    width: 750px;
+    height: 350px;
+    border: 3px solid var(--main-color);
+    background-color: var(--main-bg-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    overflow: hidden;
+    padding: 20px 20px;
+}
+.confirm-button-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 100%;
+}
+.confirm-button{
+    font-size: 40px;
+    width: 200px;
+}
+/* *************************************************************** */
+.inventory{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.probes{
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    padding: 10px 10px;
+    font-size: 30px;
+    color: var(--main-color-dim);
+}
+#test2{
+    display: none;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.probe-buttons{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 100%;
+    gap: 10px;
+}
+.probe-buttons button{
+    padding: 30px 30px;
+    font-size: 30px;
+    width: 300px;
+}
+/* *************************************************************** */
+.open.grid-item{
+    color: red;
+}
+/* *************************************************************** */
+.radar-buttons{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 100%;
+    gap: 10px;
+}
+.radar-buttons button{
+    padding: 30px 30px;
+    font-size: 30px;
+    width: 300px;
+}
+#test3{
+    display: none;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+}
+/* *************************************************************** */
+#test4{
+    display: none;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.scan-buttons{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 100%;
+    gap: 10px;
+}
+.scan-buttons button{
+    padding: 30px 30px;
+    font-size: 30px;
+    width: 300px;
+}

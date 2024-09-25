@@ -1,0 +1,331 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+*{
+    font-family: 'Space Mono', sans-serif;
+    margin: 0;
+    padding:0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}   
+header{
+    background-color:#262730 ;
+    width: 100%;
+
+    position: fixed;
+    z-index: 999;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 200px;
+
+}
+.logo{
+    text-decoration: none;
+    color:#EFF0D1 ;
+    text-transform:uppercase ;
+    font-weight: 700;
+    font-size: 1.8em;
+}
+.navigation a{
+    color:#EFF0D1;
+    text-decoration: none;
+    font-size: 1.1em;
+    font-weight: 500;
+    padding-left: 30px;
+    
+
+}
+.navigation a:hover{
+    color:#EFF38B ;
+}
+section{
+    padding: 100px 200px;
+}
+
+.main{
+    /* width: 100%;
+    min-height: 100vh;
+    display: flex; 
+    padding: 100px; 
+    align-items: center;*/
+    background: url(images/main.jpg) no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh; 
+    padding-top: 100px; 
+}
+
+
+.main h2{
+    color:#fff;
+    font-size: 1.4em;
+    font-weight: 500;
+}
+.main h2 span{
+    color:#262730;
+    font-size: 3em;
+    font-weight: 600;
+    display: inline-block;
+    margin-top: 10px;
+}
+.main h3{
+    color:#fff;
+    font-size: 2em;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-top: 10px;
+    margin-bottom: 30px;
+}
+.main-btn{
+    color: #EFF0D1;
+    background-color: #262730 ;
+    text-decoration: none;
+    font-size: 1.1em ;
+    font-weight: 600;
+    display: inline-block;
+    padding: 0.9375em 2.1875em;
+    letter-spacing: 1px;
+    border-radius: 15px;
+    margin-bottom: 40px;
+    transition: 0.7s ease;
+
+
+}
+.main-btn:hover{
+    background-color: #0F0F10;
+    transform: scale(1.1);
+}
+.social-icons a {
+    color:aliceblue;
+    font-size: 1.7em;
+    padding-right: 30px;
+    
+
+}
+.no{
+    transition: 1s ease;
+}
+.no:hover{
+    transform: scale(2);
+    color: #262730;
+}
+.title{
+    display: flex;
+    justify-content: center;
+    color: white;
+    font-size: 2.2em;
+    font-weight: 800;
+    margin-bottom: 30px;
+}
+.Story{
+    font-size: 20px;
+    margin-bottom: 60px;
+    text-align: center;
+}
+
+.projects{
+    background-color: black;
+    background: url(images/main.jpg);
+}
+.projects .content {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 20px; /* Adjust gap between the grid items */
+    justify-items: center; /* Center the items horizontally */
+    align-items: start;
+}
+
+.proj-card{
+    display: inline-block;
+    background-color: #fff;
+    border: 2px solid #262730;
+    min-height: 14em;
+    width: 23em;
+    overflow: hidden;
+    border-radius: 8px;
+    margin: 20px;
+    transition: 1s ease;
+}
+.proj-card:hover{
+    transform: scale(1.1);
+}
+.proj-card:hover .proj-img{
+    opacity: 0.9;
+}
+.proj-img img {
+    width: 100%;               
+    height: 200px;             
+    object-fit: cover;         
+
+
+}
+.proj-info{
+    text-align: center; /* Centers the text */
+    padding: 1.5em;  
+    color: black;
+    font-size: 24px;
+    font-weight: 800;
+
+}
+.proj-category{
+    font-size: 0.8em;
+   color: #262730;
+   margin-left: 10px;
+
+}
+.proj-title{
+    display: flex;
+    justify-content: space-between;
+    text-transform: uppercase;
+    font-weight: 800;
+    margin: 10px;
+}
+.more-details{
+    text-decoration: none;
+    color: black;
+    transition: 0.5s ease;
+    
+}
+.more-details:hover{
+    color: #2C3E50;
+}
+
+.content{
+
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin: 0 auto; 
+    max-width: 1200px;
+
+}
+.card{
+    background-color: white;
+    width: 21.26em;
+    box-shadow: 0 6px 25px rgba(1 1 1 /15%);
+    border-radius: 10px;
+    padding:25px;
+    margin: 15px;
+    transition: 1s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 300px; /* Defines a consistent width for cards */
+    margin: 20px;
+}
+.card:hover{
+    transform: scale(1.1);
+    background-color: #262730;
+}
+.icon{
+     /* color: #918868;
+     font-size: 8em;
+     text-align: center; */
+     margin-bottom: 15px;
+}
+.profile-pic {
+    width: 100%;  /* Make the image take up full width of its container */
+    height: auto; /* Keep aspect ratio */
+    max-width: 150px;  /* Limit the max size if necessary */
+    border-radius: 50%; /* For a circular image */
+    object-fit: cover;  /* Ensure the image covers the container without stretching */
+}
+.info{
+    text-align: center;
+}
+.info h3{
+    color:#918868 ;
+    font-size:1.2em ;
+    font-weight: 800;
+    margin: 10px;
+}
+.info p{
+    color: #918868;
+    font-size: 1.2em;
+}
+
+
+
+
+
+
+.footer{
+    background-color: #262730;
+    color: #fff;
+    padding: 2em;
+    display: flex;
+    justify-content: space-between;
+}
+.footer-title{
+    font-size: 1.3em;
+    font-weight: 600;
+
+}
+.footer-title span{
+    color: #918868;
+}
+.footer .no:hover:hover {
+       color: #918868 ;
+    
+}
+@media (max-width:1023px){
+    header{
+        padding: 12px 20px;
+    }
+    .navigation a{
+        padding-left: 10px;
+    }
+    .title{
+        font:1.8em;
+    }
+    section{
+        padding: 80px 20px;
+    }
+    .main-content h2{
+        font-size: 1em;
+    }
+    .main-content h3{
+        font-size: 1.6em;
+    }
+    .content{
+        flex-direction: column;
+        align-items: center;
+    }
+    .main{
+        background-image:url(images/main2.png) ;
+    }
+}
+@media (max-width:641px){
+    body{
+        font-size: 12px;
+    }
+    .main-content h2{
+        font-size: 0.8em;
+    } 
+    .main-content h3{
+        font-size:1.4em;
+    }
+    .main{
+        background-image:url(images/main2.png) ;
+    }
+}
+@media (max-width:300px){
+    body{
+        font-size:10px;
+    }
+    .main-content h2{
+        font-size: 0.6em;
+    } 
+    .main-content h3{
+        font-size: 1.2em;
+    }
+    .main{
+        background-image:url(images/main2.png) ;
+    }
+}
