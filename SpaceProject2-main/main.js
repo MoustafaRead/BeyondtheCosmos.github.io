@@ -1,6 +1,7 @@
 import gameData from './jsons/gameData.json' with{type: 'json'}
 
 import { chosenPlanets, logs, allPlanets, RandomElement } from './globals.js';
+let sliderValue = 10;
 let oneDayInMS = 120000; //2 minutes
 let o2 = 100
 let days = 10
@@ -16,6 +17,8 @@ let introDone = false;
 let cancelCurrentTest = false;
 let score = 0;
 let correctSubmission = []
+
+let handleClick;
 
 let test1Active = false;
 let test2Active = false;
@@ -240,20 +243,19 @@ function test4(time) {
         luckChance = 90
         if (Math.random() * 100 <= luckChance){
             if (time == 0){
-                let r = Math.floor(Math.random() * arr.length)
                 maxScan[0]--;
                 UpdateInventory();
                 test4Active = false;
-                return (RandomElement(gameData.tests.test4["success-1hr"]) + "\n" + currentPlanet.attributes.Dialogue4[r])
+                return (RandomElement(gameData.tests.test4["success-1hr"]) + "\n" + RandomElement(currentPlanet.attributes.Dialogue4))
                 //choose 1 random
             }
             else if (time == 1){
-                let r = Math.floor(Math.random() * arr.length)
+                let r = Math.floor(Math.random() * 3)
                 maxScan[1]--;
                 UpdateInventory();
                 let result = RandomElement(gameData.tests.test4["success-3hr"]) + "\n" + currentPlanet.attributes.Dialogue4[r]
                 let deleted = currentPlanet.attributes.Dialogue4.splice(r,1)
-                r = Math.floor(Math.random() * arr.length)
+                r = Math.floor(Math.random() * 2)
                 result += currentPlanet.attributes.Dialogue4[r]
                 currentPlanet.attributes.Dialogue4.push(deleted)
                 test4Active = false;
@@ -334,9 +336,16 @@ function showResponses(){
 function showTest(testType){
     document.getElementById(testType).style.display = 'flex';
 }
-function hideTest(testType){
+function hideTest(testType) {
     document.getElementById(testType).style.display = 'none';
+
+    // Reset test states
+    test1Active = false;
+    test2Active = false;
+    test3Active = false;
+    test4Active = false;
 }
+
 
 export function typeWriter(text, divId) {
     isTyping = true;
@@ -376,62 +385,68 @@ function generateText(testType){
 
     }
 }
-function activateTest(testType) {
-    if(introDone){
-        console.log("BUTTON CLICKED with test type: " + testType);
-        hideResponses();
-        showTest(testType);
-        if (!isTyping) {
-            const command = RandomElement(gameData.tests[testType].command); // gets a random command from the array of commands
+ // Define it outside to keep a stable reference
+
+ // Define it outside so it can be reused for removeEventListener
+ 
+ function activateTest(testType) {
+     if (introDone) {
+         console.log("BUTTON CLICKED with test type: " + testType);
+         hideResponses();
+         showTest(testType);
+         
+         if (!isTyping) {
+            const command = RandomElement(gameData.tests[testType].command); // Get a random command
             
             // First type the OP text, then type the ASTRO text
             typeWriter(command, 'OPtext')
-                .then(() => {
-                    // Return a new Promise that resolves when the submit button is clicked
-                    return new Promise(resolve => {
-                        const submitButton = document.getElementById('submit-button'); //TEST1 BUTTON
+            .then(() => {
+                    return new Promise((resolve) => {
+                        const submitButton = document.getElementById('submit-button');
 
-                        document.getElementById('back-button1').addEventListener('click', () => {cancelCurrentTest = true})
-                        document.getElementById('back-button2').addEventListener('click', () => {cancelCurrentTest = true})
-                        document.getElementById('back-button3').addEventListener('click', () => {cancelCurrentTest = true})
-                        document.getElementById('back-button4').addEventListener('click', () => {cancelCurrentTest = true})
-                        console.log(cancelCurrentTest + "cancel current")
-                        const handleClick = (event) => {
+                        submitButton.removeEventListener('click', handleClick);
+                        document.getElementById('probe-button1').removeEventListener('click', handleClick);
+                        document.getElementById('probe-button2').removeEventListener('click', handleClick);
+                        document.getElementById('probe-button3').removeEventListener('click', handleClick);
+                        document.getElementById('radar-button1').removeEventListener('click', handleClick);
+                        document.getElementById('radar-button2').removeEventListener('click', handleClick);
+                        document.getElementById('scan-button1').removeEventListener('click', handleClick);
+                        document.getElementById('scan-button2').removeEventListener('click', handleClick);
+                        document.getElementById('scan-button3').removeEventListener('click', handleClick);
+                        // Define handleClick outside to keep a stable reference
+                        handleClick = (event) => {
                             if (cancelCurrentTest) {
                                 cancelCurrentTest = false;
                                 resolve();
                                 return;
                             }
-                            if(!isTyping){
-                                console.log(event.target.name)
-                                const sliderValue = document.getElementById('slider').value;
+                            if (!isTyping) {
                                 let testResult;
-                                if(testType === 'test1'){
-                                    testResult = test1(sliderValue);
-                                }
-                                if(testType === 'test2'){
+                                if (testType === 'test1') {
+                                    const sliderValue = document.getElementById('slider').value;
+                                    testResult = test1(sliderValue); // Correct test call
+                                } else if (testType === 'test2') {
                                     testResult = test2(event.target.name);
-                                }
-                                if(testType === 'test3'){
+                                } else if (testType === 'test3') {
                                     testResult = test3(event.target.name);
-                                }
-                                if(testType === 'test4'){
+                                } else if (testType === 'test4') {
                                     testResult = test4(event.target.value);
                                 }
                                 typeWriter(testResult, 'ASTROtext').then(() => {
-                                    resolve();
-                            });}
+                                    resolve(); // Resolve when typing is done
+                                });
+                            }
                         };
-                        ///TEST 1 BUTTONS///
+
+                        // Remove any previous event listeners to avoid duplicate triggering
+
+                        // Attach fresh event listeners for the current test
                         submitButton.addEventListener('click', handleClick);
-                        ///TEST 2 BUTTONS///
                         document.getElementById('probe-button1').addEventListener('click', handleClick);
                         document.getElementById('probe-button2').addEventListener('click', handleClick);
                         document.getElementById('probe-button3').addEventListener('click', handleClick);
-                        ///TEST 3 BUTTONS///
                         document.getElementById('radar-button1').addEventListener('click', handleClick);
                         document.getElementById('radar-button2').addEventListener('click', handleClick);
-                        ///TEST 4 BUTTONS///
                         document.getElementById('scan-button1').addEventListener('click', handleClick);
                         document.getElementById('scan-button2').addEventListener('click', handleClick);
                         document.getElementById('scan-button3').addEventListener('click', handleClick);
@@ -440,6 +455,34 @@ function activateTest(testType) {
         }
     }
 }
+
+// Correct the Back Button Event Handlers
+document.getElementById('back-button1').addEventListener('click', function () {
+    cancelCurrentTest = true; // Set cancel flag
+    showResponses();
+    hideTest('test1');
+});
+
+document.getElementById('back-button2').addEventListener('click', function () {
+    cancelCurrentTest = true;
+    showResponses();
+    hideTest('test2');
+});
+    
+    // Same for other back buttons...
+document.getElementById('back-button3').addEventListener('click', function(){
+    cancelCurrentTest = true; 
+    showResponses();
+    hideTest('test3');
+});
+// TEST 3 BUTTONS //
+document.getElementById('back-button4').addEventListener('click', function(){
+    cancelCurrentTest = true; 
+    showResponses();
+    hideTest('test4');
+});
+    
+
 function SwitchPlanet(planet){ //called from html button
     currentPlanet = planet // <-- dy tmam
     console.log(currentPlanet.name)
@@ -448,34 +491,16 @@ function SwitchPlanet(planet){ //called from html button
 chosenPlanets.forEach(planet => {
     console.log(planet)
 }) 
+
 document.addEventListener('DOMContentLoaded', () => {
     // TEST 1 BUTTONS //
-    let sliderValue = 10;
-    let slider = document.getElementById('slider'); //GETS SLIDER VALUE
+    let sliderValue = 10; // Initialize slider value
+    let slider = document.getElementById('slider'); // Get slider element
     slider.addEventListener('input', () => {
-        sliderValue = slider.value;
+        sliderValue = slider.value; // Update slider value on input change
     });
-    document.getElementById('back-button1').addEventListener('click', function() { //BACK BUTTON
-        showResponses();
-        hideTest('test1');
-    });
-    document.getElementById('submit-button').addEventListener('click',() => test1(sliderValue)); //SUBMIT BUTTON
-    // TEST 2 BUTTONS //
-    document.getElementById('back-button2').addEventListener('click', function(){
-        showResponses();
-        hideTest('test2');
-    }); //SUBMIT BUTTON
-    
+
     // TEST 3 BUTTONS //
-    document.getElementById('back-button3').addEventListener('click', function(){
-        showResponses();
-        hideTest('test3');
-    });
-    // TEST 3 BUTTONS //
-    document.getElementById('back-button4').addEventListener('click', function(){
-        showResponses();
-        hideTest('test4');
-    });
     
 
     // LOG AND VIEW LOGS BUTTON //
@@ -500,6 +525,7 @@ document.addEventListener('DOMContentLoaded', () => {
             SwitchPlanet(chosenPlanets[index]);
         });
     });
+    
 });
 
     let daysVisual = document.getElementById('days')
