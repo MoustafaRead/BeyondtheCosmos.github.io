@@ -133,11 +133,10 @@ section{
     background: url(images/main.jpg);
 }
 .projects .content {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr); 
+    display: flex;
     gap: 20px; /* Adjust gap between the grid items */
     justify-items: center; /* Center the items horizontally */
-    align-items: start;
+    align-items: center;
 }
 
 .proj-card{
@@ -298,7 +297,7 @@ section{
         align-items: center;
     }
     .main{
-        background-image:url(images/main2.png) ;
+        background-image:url(images/main.jpg) ;
     }
 }
 @media (max-width:641px){
@@ -312,7 +311,7 @@ section{
         font-size:1.4em;
     }
     .main{
-        background-image:url(images/main2.png) ;
+        background-image:url(images/main.jpg) ;
     }
 }
 @media (max-width:300px){
@@ -326,6 +325,6 @@ section{
         font-size: 1.2em;
     }
     .main{
-        background-image:url(images/main2.png) ;
+        background-image:url(images/main.jpg) ;
     }
 }
