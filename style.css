@@ -19,6 +19,13 @@ header{
     padding: 10px 200px;
 
 }
+.Challenge{
+    color: rgb(150, 0, 0);
+    transition: color 0.5s;
+}
+.Challenge:hover {
+    color: rgb(255, 0, 0)
+}
 .logo{
     text-decoration: none;
     color:#EFF0D1 ;
@@ -249,7 +256,14 @@ section{
     font-size: 1.2em;
 }
 
-
+.finally-img {
+    width: 100%;           /* Make the image span the full width of its container */
+    height: auto;          /* Maintain the aspect ratio */
+    object-fit: cover;     /* Ensure the image covers the container without stretching */
+    max-width: 600px;      /* Set a maximum width for larger screens */
+    margin: 0 auto;        /* Center the image horizontally */
+    display: block;        /* Ensure the image behaves as a block-level element */
+}
 
 
 
