@@ -155,7 +155,7 @@ function test2(chosenProbe) {
                 maxProbes[2]--;
                 UpdateInventory();
                 test2Active = false;
-                return RandomElement(gameData.tests.test2["success-deep"]) + "\nTemperature: " + RandomElement(currentPlanet.attributes.temperature) + " °K"
+                return RandomElement(gameData.tests.test2["success-deep"]) + "\nTemperature: " + RandomElement(currentPlanet.attributes.temperature) + " °C"
             }
             
             else{
@@ -168,14 +168,14 @@ function test2(chosenProbe) {
                 maxProbes[0]--;
                 UpdateInventory();
                 test2Active = false;
-                return RandomElement(gameData.tests.test2["success-standard"]) + "\nTemperature: " + RandomElement(currentPlanet.attributes.temperature) + " °K"
+                return RandomElement(gameData.tests.test2["success-standard"]) + "\nTemperature: " + RandomElement(currentPlanet.attributes.temperature) + " °C"
                 //display temp
             }
             else if (chosenProbe === "High"){
                 maxProbes[1]--;
                 UpdateInventory();
                 test2Active = false;
-                return RandomElement(gameData.tests.test2["success-high"]) + "\nTemperature: " + RandomElement(currentPlanet.attributes.temperature) + " °K"
+                return RandomElement(gameData.tests.test2["success-high"]) + "\nTemperature: " + RandomElement(currentPlanet.attributes.temperature) + " °C"
                 //display temp
             }
         }
